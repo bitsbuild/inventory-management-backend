@@ -29,6 +29,6 @@ class Item(models.Model):
     ]
     item_category = models.CharField(max_length=30, choices=CATEGORY_CHOICES)
     item_quantity = models.IntegerField()
-    item_prices = models.IntegerField()
+    item_price = models.IntegerField()
     def __str__(self):
         return self.item_name
