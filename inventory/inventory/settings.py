@@ -7,7 +7,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_em0q6u2agf$ca7j2(b=tb7x(k8q3cxz9dc*^l^_2gbe88(j_+'
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['inventory-k58q.onrender.com' ]
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
