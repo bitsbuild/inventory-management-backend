@@ -26,7 +26,7 @@ class ItemSerializer(serializers.Serializer):
         ('health', 'health_wellness'),
         ('baby_products', 'baby_products'),
     ]
-    item_category = serializers.CharField(max_length=30, choices=CATEGORY_CHOICES)
+    item_category = serializers.ChoiceField(choices=CATEGORY_CHOICES)
     item_quantity = serializers.IntegerField()
     item_price = serializers.IntegerField()
     def create(self,validated_data):
