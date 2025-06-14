@@ -15,16 +15,31 @@ class ItemPG(APIView):
     # Gets All Items
     def get(self,request):
         items = Item.objects.all()
-        serialized_items = ItemSerializer(data=items)
+        serialized_items = ItemSerializer(items,many=True)
         return Response(serialized_items.data,status=status.HTTP_200_OK)
 class ItemGUD(APIView):
     # Gets An Item For ID Value Specified In URL
     def get(self,request,id):
-        pass
+        try:
+            item = Item.objects.get(pk=id)
+            ser_item = ItemSerializer(item)
+            return Response(ser_item.data,status=status.HTTP_200_OK)
+        except:
+            return Response(ser_item.errors,status=status.HTTP_404_NOT_FOUND)
     # Updates An Item For ID Value Specified In URL
     def update(self,request,id):
-        pass
+        item = Item.objects.get(pk=id)
+        serializer = ItemSerializer(item,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
     # Deletes An Item For ID Value Specified In URL
     def delete(self,request,id):
-        pass
+        try:
+            Item.objects.delete(pk=id)
+            return Response({"status":"specified object deleted"},status=status.HTTP_200_OK)
+        except:
+            return Response({"status":"deletion process failed"},status=status.HTTP_400_BAD_REQUEST)
     
