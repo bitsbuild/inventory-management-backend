@@ -5,7 +5,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-_em0q6u2agf$ca7j2(b=tb7x(k8q3cxz9dc*^l^_2gbe88(j_+'
+from dotenv import load_dotenv
+load_dotenv()
+SECRET_KEY = os.getenv('DSK')
 DEBUG = False
 ALLOWED_HOSTS = ['inventory-k58q.onrender.com' ]
 INSTALLED_APPS = [
